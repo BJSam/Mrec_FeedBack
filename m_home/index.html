@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/homepagestyle.css">
+	<link rel="stylesheet" href="fstyle.css">
+    <title>::Home Page::</title>
+  </head>
+  <body onload="rndd();">
+    
+        <div class="container">  
+           
+            
+            <div class="logo col-lg-1 col-md-1 col-sm-2 col-xs-12">
+                <img src="images/mreclogo.png" height="120px" width="120px">
+            </div>
+            <div class="phone col-lg-6 col-md-8 col-sm-10 col-xs-12">
+                <p style="font-size:27px;">MALLA REDDY ENGINEERING COLLEGE</p>
+                <p style="font-size:22px; margin-top:0px; padding:1px; line-height: 10px;">MAIN CAMPUS</p>
+                
+            </div>
+            <div class="right col-lg-6 col-md-8 col-sm-10 col-xs-12">
+                <p style="font-size: 33px; color:#800080">Autonomous Institution</p>
+                <p style="font-size: 18px;line-height: 5px;">Approved by AICTE & Affiliated to JNTU Hyderabad</p>
+                <p style="font-size: 21px; color:green">EAMCET/ICET CODE: MREC</p>
+                
+            </div>
+            <hr>
+        </div>
+        
+        
+         <div class="container">
+             
+            <div class="box1">
+                    <div class="div1">
+                      <a href="index1.html" style="text-decoration: none;" > <button class="btn btn1">Admin Login</button></a><br>
+                        
+                    </div>
+                    <div class="div1">
+                        <button onclick="window.location.href='http://localhost/MREC_ADMIN/FB_a/'" class="btn btn2">FeedBack Form</button>
+                        
+                    </div>
+                </div>
+        </div> 
+
+	<div class="footer">
+  <div id="button"  ></div>
+<div id="container">
+<div id="cont">
+<div class="footer_center">
+	   <h3 id="ftxt"></h3>
+</div>
+</div>
+</div>
+</div>
+<!-- footer script-->
+
+<script>
+
+function merge_array(array1, array2) {
+    var result_array = [];
+    var arr = array1.concat(array2);
+    var len = arr.length;
+    var assoc = {};
+
+    while(len--) {
+        var item = arr[len];
+
+        if(!assoc[item]) 
+        { 
+            result_array.unshift(item);
+            assoc[item] = true;
+        }
+    }
+
+    return result_array;
+}
+
+
+
+
+function random_item(items)
+{
+  
+return items[Math.floor(Math.random()*items.length)];
+     
+}
+function rndd(){
+var itm=[];
+var items = ["abcd", "xyz", "xcv", "ll"];
+  for(var k=0;k<=items.length;k++){
+	itm[k]=random_item(items);
+  }
+                                   
+   const uniqueArray = Array.from(new Set(itm));
+   if(uniqueArray.length==items.length){
+  // document.getElementById("ftxt").value="By:- "+uniqueArray;
+//console.log(uniqueArray);
+window.rnddd=uniqueArray;
+                                   }
+    else{
+   //  var array3={};   
+ //array3 = items.concat(uniqueArray).unique(); 
+   
+var k= merge_array(items, uniqueArray); 
+//console.log("lol"+k);                  
+window.rnddd=   k;
+rndl();	
+                                   }
+								   }
+								   
+			function rndl(){
+			console.log(window.rnddd);
+document.getElementById("ftxt").innerHTML ="By:- "+ window.rnddd;
+			}	
+
+
+	
+</script>
+
+		
+    </body>       
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <title>Faculty Details</title>
+    	<link rel="icon" href="https://mrec.freecse.me/admin_home/mreclogo.png" type="image/gif" sizes="32x32"/>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+<link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<link rel="stylesheet" href="./tstyle.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<link rel="stylesheet" href="https://mrec.freecse.me/admin_home/fstyle.css">
+<link rel="stylesheet" href="https://mrec.freecse.me/admin_home/menu_style.css">
+<style>
+body, html {
+  height: 100%;
+}
+
+body {
+  background-image: url("bg.jpg");
+  background-repeat: no-repeat;
+   /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-size: cover;
+}
+</style>
+</head>
+<body onload="rndd();" >
+<!-- partial:index.partial.html -->
+<div class="menu-section">
+  <div class="menu-toggle">
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+  </div>
+  <nav>
+		<ul role="navigation" class="hidden">
+		<li><a href="https://mrec.freecse.me/admin_home/">Home</a></li>
+		 <li><a href="https://mrec.freecse.me/admin_home/otp/">OTP</a></li>   
+            <li><a href="#">REPORT</a></li>
+            <li><a href="#">CHANGE PASSWORD</a></li>
+            <li><a href="javascript:void(0);" onclick="Logout();">LOGOUT</a></li>
+            <li><a href="#">CONTACT US</a></li>
+		
+		</ul>
+	</nav>
+</div>
+
+<br>
+				 <label for="" class="col-sm-1 form-control-label"></label>
+                <select class="selectpicker" id="Deaprtment" data-live-search="true">
+				 <option value="department"  disabled selected> 
+				 Department
+				 </option>
+                <option value="cse">CSE</option>
+				<option value="ece">ECE</option>
+				<option value="eee">EEE</option>
+				<option value="MECH">MECH</option>
+				<option value="CIVIL">CIVIL</option>
+				<option value="MINING">MINING</option>
+                </select>
+				<select class="selectpicker" id="year" data-live-search="true">
+				<option value="year"  disabled selected>year</option>
+				
+                <option value="I">I</option>
+				<option value="II">II</option>
+				<option value="III">III</option>
+				<option value="IV">IV</option>
+                </select>
+				<select class="selectpicker" id="section" data-live-search="true">
+				<option value="section"  disabled selected>section</option>
+                <option value="A">A</option>
+				<option value="B">B</option>
+				<option value="C">C</option>
+				<option value="d">D</option>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-primary active" value="Primary" id=detailb onclick='disptab();'>submit</button> 
+			<div class='tabl'>
+			<br><br>
+			
+			<div class="container" id='tabdetail'>
+  
+  <div id="table" class="table-editable">
+    <span class="table-add glyphicon glyphicon-plus"></span>
+    <table class="table">
+      <tr>
+        <th>fn</th>
+        <th>sub</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td contenteditable="true">undefined</td>
+        <td contenteditable="true">undefined</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+      <!-- This is our clonable table line -->
+      <tr class="hide">
+        <td contenteditable="true">undefined</td>
+        <td contenteditable="true">undefined</td>
+        <td>
+          <span class="table-remove glyphicon glyphicon-remove"></span>
+        </td>
+        <td>
+          <span class="table-up glyphicon glyphicon-arrow-up"></span>
+          <span class="table-down glyphicon glyphicon-arrow-down"></span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  <div style="padding-left:510px"><button id="export-btn" class="btn btn-primary alig">Export Data</button></div>
+  <p id="export"></p>
+</div>
+			
+			
+			
+			</div>
+					<div class="footer">
+  <div id="button"  ></div>
+<div id="container">
+<div id="cont">
+<div class="footer_center">
+	   <h3 id="ftxt"></h3>
+</div>
+</div>
+</div>
+</div>
+			
+			<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC_JAPZKFMhaoYzTnnwBx6vNS68B0Q1HH0",
+    authDomain: "mrecfeed.firebaseapp.com",
+    databaseURL: "https://mrecfeed.firebaseio.com",
+    projectId: "mrecfeed",
+    storageBucket: "",
+    messagingSenderId: "553177136316",
+    appId: "1:553177136316:web:159b202706cad7e3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script>
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    // ...
+	//console.log(user);
+  } else {
+   	window.location.replace("https://mrec.freecse.me/");
+  }
+});
+
+
+</script>
+
+<script>
+
+function merge_array(array1, array2) {
+    var result_array = [];
+    var arr = array1.concat(array2);
+    var len = arr.length;
+    var assoc = {};
+
+    while(len--) {
+        var item = arr[len];
+
+        if(!assoc[item]) 
+        { 
+            result_array.unshift(item);
+            assoc[item] = true;
+        }
+    }
+
+    return result_array;
+}
+
+
+
+
+function random_item(items)
+{
+  
+return items[Math.floor(Math.random()*items.length)];
+     
+}
+function rndd(){
+var itm=[];
+var items = ["abcd", "xyz", "xcv", "ll"];
+  for(var k=0;k<=items.length;k++){
+	itm[k]=random_item(items);
+  }
+                                   
+   const uniqueArray = Array.from(new Set(itm));
+   if(uniqueArray.length==items.length){
+  // document.getElementById("ftxt").value="By:- "+uniqueArray;
+//console.log(uniqueArray);
+window.rnddd=uniqueArray;
+                                   }
+    else{
+   //  var array3={};   
+ //array3 = items.concat(uniqueArray).unique(); 
+   
+var k= merge_array(items, uniqueArray); 
+//console.log("lol"+k);                  
+window.rnddd=   k;
+rndl();	
+                                   }
+								   }
+								   
+			function rndl(){
+			console.log(window.rnddd);
+document.getElementById("ftxt").innerHTML ="By:- "+ window.rnddd;
+			}	
+
+
+	
+</script>
+
+<!-- partial -->
+<script  src="./tscript.js"></script>
+<script  src="https://mrec.freecse.me/admin_home/menu_script.js"></script>
+<script>
+$(function() {
+  $('.selectpicker').selectpicker();
+});
+function disptab()
+{
+	document.getElementById('tabdetail').style.display='inline';
+	document.getElementById('tabdetail').style.height='100px'
+	document.getElementById('tabdetail').style.width='100px'
+	//console.log(document.getElementById('tabdetail'));
+}
+</script>
+
+<script>
+function Logout(){
+firebase.auth().signOut()
+  .then(function() {
+  location.reload(true);
+  })
+  .catch(function(error) {
+    // An error happened
+	alert("somthing went wrong Pls contact admin");
+	console.log(error);
+  });
+}
+</script>
+
+
+</body>
+</html>

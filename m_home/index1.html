@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources/style.css">
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <title>::Home Page::</title>
+    <link rel="stylesheet" href="fstyle.css">
+	 <link rel="stylesheet" href="Lstyle.css">
+	<script>
+function init(){
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+  alert("You already loggedin, We are redirectiong you please wait.... ");
+	window.location.replace("https://mrec.freecse.me/admin_home/");
+    // ...
+	//console.log(user);
+  } else {
+    // User is signed out.
+    // ...
+	//console.log("lol");
+  }
+});
+
+}
+</script>
+
+ <script>
+function Loggin(iss){
+    console.log(iss);
+    if(iss=='nor'){
+      
+var email=document.getElementById("emailnor").value;
+var password=document.getElementById("passnor").value;  
+    }
+    else if(iss=='nnor'){
+        
+var email=document.getElementById("emailnnor").value;
+var password=document.getElementById("passnnor").value; 
+    }
+    else {
+        alert(email+";"+password)
+    }
+document.getElementById("loadeer").style.visibulity="visible";
+//console.log(document.getElementById("trail"));
+//var email=document.getElementById("email").value;
+//var password=document.getElementById("pass").value;
+
+firebase.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+   // user signed in
+   window.location.replace("https://mrec.freecse.me/admin_home/");
+}).catch(function(error) {
+document.getElementById("loadeer").visibulity="hidden";
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+    } 
+    else alert(errorCode);
+});
+}
+</script>
+	
+	
+	
+  </head>
+<body onload="init();rndd();">
+<div class="loadeer" id="loadeer">
+<table><tr>
+<td>
+<div class="loader">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<h1 style="color:white;margin-left:50px;">Loading......</h1>
+</td>
+</tr></table>
+</div>
+    <div id="trail">
+    <div class="container main">  
+        <div class="logo col-lg-1 col-md-1 col-sm-2 col-xs-12">
+            <img src="images/mreclogo.png" height="120px" width="120px">
+        </div>
+        <div class="phone col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <p style="font-size:27px;">MALLA REDDY ENGINEERING COLLEGE</p>
+            <p style="font-size:22px; margin-top:0px; padding:1px; line-height: 10px;">MAIN CAMPUS</p>
+        </div>
+        <div class="right col-lg-6 col-md-8 col-sm-10 col-xs-12">
+            <p style="font-size: 33px; color:#800080">Autonomous Institution</p>
+            <p style="font-size: 18px;line-height: 5px;">Approved by AICTE & Affiliated to JNTU Hyderabad</p>
+            <p style="font-size: 21px; color:green">EAMCET/ICET CODE: MREC</p>
+        </div>
+        
+    <div class="login-box col-lg-6 col-md-8 col-sm-10 col-xs-12 ">
+        <h1><i>Admin Login</i></h1>
+        <p id="para"></p>
+        
+            <div class="textbox">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input type="text" placeholder="Email ID" id="emailnor" class="loginEmail" ><br>
+            </div>
+            <div class="textbox">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password" placeholder="Password" id="passnor" class="loginPass" ><br>
+            </div>
+                <button id="loginBtn"  class="btn" onclick="Loggin('nor');">sign in</button>
+        
+    </div>
+    </div>
+    
+    <div class="container boot" style="display: none">
+    <div class="logo1 col-lg-1 col-md-1 col-sm-2 col-xs-12">
+        <img src="images/mreclogo.png" height="120px" width="120px"><br>
+    </div>
+    <div class="phone1 col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        <p style="font-size:25px; color:#800080">MALLA REDDY ENGINEERING COLLEGE</p>
+        
+    </div>
+    </div>
+    <div class="box col-lg-6 col-md-8 col-sm-10 col-xs-12 " style="display: none">
+        <h1><i>Admin Login</i></h1>
+        <p id="para"></p>
+        
+            <div class="textbox">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input type="text" placeholder="Email ID" id="emailnnor" class="loginEmail" ><br>
+            </div>
+            <div class="textbox">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password" placeholder="Password" id="passnnor" class="loginPass" ><br>
+            </div>
+                <button id="loginBtn" value="Sign in" class="btn" onclick="Loggin('nnor');">sign in</button>
+        
+    </div>
+    </div>
+    <div id="logoutBtn"  style="display:none;">
+        <p id="userpara">welocme user</p>
+        <button  onclick="logout()" >log out</button>
+    </div>
+    <div id="verify" style="display: none;">
+        <p>Your Email Address is not verified. Please click the below button to verify.</p>
+        <button onclick="verifyemail()">verifyEmail</button>
+    
+    </div>
+	
+	
+	<div class="footer">
+  <div id="button"  ></div>
+<div id="container">
+<div id="cont">
+<div class="footer_center">
+	   <h3 id="ftxt"></h3>
+</div>
+</div>
+</div>
+</div>
+	
+	
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-auth.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC_JAPZKFMhaoYzTnnwBx6vNS68B0Q1HH0",
+    authDomain: "mrecfeed.firebaseapp.com",
+    databaseURL: "https://mrecfeed.firebaseio.com",
+    projectId: "mrecfeed",
+    storageBucket: "",
+    messagingSenderId: "553177136316",
+    appId: "1:553177136316:web:159b202706cad7e3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+	
+	
+	
+	
+	
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script src="jquery.js"></script>
+
+<!-- footer js-->
+
+<script>
+
+function merge_array(array1, array2) {
+    var result_array = [];
+    var arr = array1.concat(array2);
+    var len = arr.length;
+    var assoc = {};
+
+    while(len--) {
+        var item = arr[len];
+
+        if(!assoc[item]) 
+        { 
+            result_array.unshift(item);
+            assoc[item] = true;
+        }
+    }
+
+    return result_array;
+}
+
+
+
+
+function random_item(items)
+{
+  
+return items[Math.floor(Math.random()*items.length)];
+     
+}
+function rndd(){
+var itm=[];
+var items = ["abcd", "xyz", "xcv", "ll"];
+  for(var k=0;k<=items.length;k++){
+	itm[k]=random_item(items);
+  }
+                                   
+   const uniqueArray = Array.from(new Set(itm));
+   if(uniqueArray.length==items.length){
+  // document.getElementById("ftxt").value="By:- "+uniqueArray;
+//console.log(uniqueArray);
+window.rnddd=uniqueArray;
+                                   }
+    else{
+   //  var array3={};   
+ //array3 = items.concat(uniqueArray).unique(); 
+   
+var k= merge_array(items, uniqueArray); 
+//console.log("lol"+k);                  
+window.rnddd=   k;
+rndl();	
+                                   }
+								   }
+								   
+			function rndl(){
+			console.log(window.rnddd);
+document.getElementById("ftxt").innerHTML ="By:- "+ window.rnddd;
+			}	
+
+
+	
+</script>
+
+	
+
+
+</body>
+
+    
+
+
+
+</html>
